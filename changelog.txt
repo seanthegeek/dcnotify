@@ -1,6 +1,11 @@
 Change Log
 ==========
 
+0.1.1 (2012-12-01)
+------------------
+
+- Fixed formatting in templates/emails/guest.html
+
 0.1.0 (2012-12-01)
 ------------------
 
