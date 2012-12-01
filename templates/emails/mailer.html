@@ -1,0 +1,7 @@
+{% extends "/emails/layout.html" %}
+{% block body %}
+    {{ message|safe }}
+{% endblock %}
+{% block footer %}
+	<p><a href="{{unsub_url}}" target="_blank">Click here to unsubscribe</a></p>
+{% endblock %}

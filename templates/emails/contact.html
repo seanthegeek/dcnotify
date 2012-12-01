@@ -1,0 +1,6 @@
+{% extends "/emails/layout.html" %}
+{% block body %}
+	<p>From: {{ sender[0] }} <<a href="mailto: {{ sender[1] }}">{{ sender[1] }}</a>></p>
+	<p>{{ message }}</p>
+
+{% endblock %}

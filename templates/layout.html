@@ -1,0 +1,143 @@
+{% set navigation_bar = [
+    ('/', 'home', 'Home'),
+    ('/about/', 'about', 'About'),
+    ('/contact/', 'contact', 'Contact')
+] -%}
+{% set active_page = active_page -%}
+
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	    <title>{% block title %}{% endblock %} - D*C Notifications</title>
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	    {% if description %} <meta name="description" content="{{ description }}"> {% endif %}
+	    <meta name="author" content="Sean Whalen">
+	    <meta name="google-site-verification" content="MqEcE42tSdnRTeQ88XdMdPOxR_4X6GK03UT6vkg-hn0">
+
+	    <!-- Le styles -->
+	    <link href={{ url_for('static',filename='css/libs/bootstrap.min.css') }} rel="stylesheet">
+	    <link href={{ url_for('static',filename='css/libs/bootstrap-responsive.min.css') }} rel="stylesheet">
+	    <style>
+		  body {
+		    padding-top: 20px;
+		    padding-bottom: 40px;
+		  }
+
+		  /* Custom container */
+		  .container-narrow {
+		    margin: 0 auto;
+		    max-width: 700px;
+		  }
+		  .container-narrow > hr {
+		    margin: 30px 0;
+		  }
+		  .alert {
+		  	text-align: center;
+		  	list-style: none;
+		  }
+
+		  /* Main message and sign up button */
+		  .jumbotron {
+		    margin: 60px 0;
+		    text-align: center;
+		  }
+
+		   form {
+		  	width: 50%;
+		  	margin: 30px auto;
+		  }
+		  
+		 label {
+		 	display: none;
+		 }
+
+		 input, textarea {
+		  	width: 100%
+		  }
+
+		  .jumbotron h1 {
+		    font-size: 16px;
+		    line-height: 1;
+		  }
+	    </style>
+
+	     <script src="{{ url_for('static',filename='js/libs/modernizr-2.6.2-respond-1.1.0.min.js') }}"></script>
+
+	    <!-- Fav and touch icons -->
+	    <link rel="shortcut icon" href="{{ url_for('static',filename='ico/favicon.ico') }}">
+	    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ url_for('static',filename='ico/apple-touch-icon-144-precomposed.png') }}">
+	    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ url_for('static',filename='ico/apple-touch-icon-114-precomposed.png') }}">
+	    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ url_for('static',filename='ico/apple-touch-icon-114-precomposed.png') }}">
+	    <link rel="apple-touch-icon-precomposed" href="{{ url_for('static',filename='ico/apple-touch-icon-57-precomposed.png') }}">
+  </head>
+
+  <body>
+	<!--[if lt IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+    <![endif]-->
+
+    <div class="container-narrow">
+
+      <div class="masthead">
+      	{% if notice %}
+	      	<div class="alert fade in">
+	      		<a class="close" data-dismiss="alert">×</a>
+	      		{{ notice }}
+	      		</div>
+      	{% endif %}
+      	<div id="nav" class="pull-right">
+	      	<ul class="nav nav-pills">
+	      		{% for href, id, caption in navigation_bar %}
+		      		<li{% if id == active_page %} class="active"{% endif%}>
+		      		<a href="{{ href|e }}">{{ caption|e }}</a></li>
+	      		{% endfor %}
+	      		</ul>
+      	</div>
+            <h3 class="muted">D*C Notifications</h3>
+            <p>Last check: {{ updated }}</p>
+      </div>
+
+      <hr>
+            {% with messages = get_flashed_messages(with_categories=true) %}
+      	{% if messages %}
+    		<ul class="flashes">
+    			{% for category, message in messages %}
+      				<li class="alert alert-{{ category }} fade in">
+      					<a class="close" data-dismiss="alert">×</a>
+      					{{ message }}
+      				</li>
+    			{% endfor %}
+    		</ul>
+    	{% endif %}
+	{% endwith %}
+
+      {% block body %}{% endblock %}
+      <hr>
+
+      <div class="footer">
+      	<div id="info" class="pull-right">
+      		<p>Version {{ version }}</p>
+      		<p><a href="https://twitter.com/DCNotify/" target="blank_">@DCNotify</a></p>
+         </div>
+          <div id="legal">
+          	<p>Not affiliated with or endorsed by Dragon*Con or DCI, Inc.</p>
+          	<p>&copy; <a href="https://twitter.com/seanthegeek" target="blank_">Sean Whalen</a> 2012</p>
+          	</div>
+      </div>
+
+    </div> <!-- /container -->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src={{ url_for('static',filename='js/libs/jquery-1.8.2.min.js') }}"><\/script>')</script>
+    <script src="{{ url_for('static',filename='js/libs/bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/main.js') }}"></script>
+  </body>
+</html>

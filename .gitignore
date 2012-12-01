@@ -1,5 +1,36 @@
 *.py[cod]
 
+# Packages #
+############
+# it's better to unpack these files and commit the raw source
+# git has its own built in compression methods
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# Logs and databases #
+######################
+*.log
+*.sql
+*.sqlite
+*.db
+
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Icon?
+ehthumbs.db
+Thumbs.db
+
 # C extensions
 *.so
 
@@ -33,3 +64,8 @@ nosetests.xml
 .mr.developer.cfg
 .project
 .pydevproject
+
+# Project files
+secrets.py
+custom.txt
+notice.txt

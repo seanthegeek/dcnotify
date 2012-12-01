@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+{% set active_page = "about" -%}
+{% block title %}About{% endblock %}
+{% block body %}
+
+	<p>Have you found yourself checking the <a href="http://dragoncon.org/dc_guests_list.php" target="blank_">Dragon*Con guest list</a> far too often?
+		Stop wasting time, bandwidth, and sanity; have D*C Notifications do the obsessive checking for you!</p>
+	<p> D*C Notifications works by checking the structure of a Dragon*Con web page similar to the way a search engine does. The difference is that a search 
+		engine catalogs an entire site, but D*C notifications looks for specific data. Once an hour, a script looks at the list of guests on the D*C 
+		website, and compares it to the guests that it has already noted. If new guests are found notifications are sent via Twitter and email.</p>
+	<p>This method has it's disadvantages. Reading specific data from a web page requires that the data is consistently structured. If the 
+		format of the page changes, the data-fetching script will need to be updated to reflect the changes. As a result, there are no 
+		guarantees that script will correctly parse the page. D*C Notifications cannot be expected to be reliable. If you need 
+		official information on Dragon*Con, see the official <a href="http://dragoncon.org/" target="blank_">Dragon*Con website.</a></p>
+		
+	<p>The source code for this project is avaible on <a href="https://github.com/seanthegeek/dcnotify" target="blank_">GitHub</a>.</p>
+
+	<p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+	IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+	FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+	AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+	SOFTWARE.</p>
+	
+	<p>Site icon by <a href="http://thegoldguys.blogspot.com" target="_blank">The Gold Guys</a>. 
+		Used under a Creative Commons <a href="https://creativecommons.org/licenses/by-sa/2.0/deed.en" target="_blank">Attribution-ShareAlike 2.0 Generic (CC BY-SA 2.0)</a> 
+		license.</p>
+	
+{% endblock %}

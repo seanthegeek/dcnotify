@@ -1,0 +1,7 @@
+{% extends "/emails/layout.html" %}
+{% block body %}
+	<p>Please click the link below to activate your subsciption.
+		Subscriptions that are not activated within 24 hours are removed.</p>
+
+	<p><a href="{{ url }}" target="_blank">{{ url }}</a></p>
+{% endblock %}
