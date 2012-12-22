@@ -28,7 +28,7 @@ from flask.ext.wtf.html5 import EmailField
 __author__ = "Sean Whalen"
 __copyright__ = "Copyright (C) 2012 %s" % __author__
 __license__ = "MIT"
-__version__ = "0.1.2"
+__version__ = "0.1.3"
 
 # Ignore flask case
 # pylint: disable=C0103

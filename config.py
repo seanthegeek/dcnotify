@@ -8,6 +8,8 @@
 
 from secrets import *
 
+DEBUG = False
+
 DC_YEAR = 2013
 
 SERVER_NAME = "www.dcnotify.net"

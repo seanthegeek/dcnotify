@@ -1,6 +1,13 @@
 Change Log
 ==========
 
+
+0.1.3 (2012-12-22)
+------------------
+
+- Fixed a bug in scraper error handler that stopped it from working
+
+
 0.1.2 (2012-12-22)
 ------------------
 

@@ -9,7 +9,7 @@ Provides information by screen-scraping the D*C website
 # pylint: disable=W0403
 
 
-from logging import ERROR
+from logging import ERROR,getLogger
 from logging.handlers import SMTPHandler
 from re import match
 from robotparser import RobotFileParser
@@ -18,17 +18,17 @@ from requests import get
 from bs4 import BeautifulSoup as bs
 
 from config import MAIL_SERVER, DEFAULT_MAIL_SENDER, ADMIN_MAIL, \
-MAIL_USERNAME, MAIL_PASSWORD
+MAIL_USERNAME, MAIL_PASSWORD, DEBUG
 
 
 __author__ = "Sean Whalen"
 __copyright__ = "Copyright (C) 2012 %s" % __author__
 __license__ = "MIT"
-__version__ = "1.1.2"
+__version__ = "1.1.3"
 
 BASE_URL = "http://dragoncon.org"
 
-if not app.debug:
+if not DEBUG:
     mail_handler = SMTPHandler(MAIL_SERVER,
                                DEFAULT_MAIL_SENDER,
                                [ADMIN_MAIL],
@@ -37,7 +37,8 @@ if not app.debug:
                                MAIL_PASSWORD),
                                secure=())
     mail_handler.setLevel(ERROR)
-    app.logger.addHandler(mail_handler)
+    logger = getLogger()
+    logger.addHandler(mail_handler)
 
 def _get_soup(path):
     """Gets soup from the given path, respecting robots.txt"""
