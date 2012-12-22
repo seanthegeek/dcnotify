@@ -6,7 +6,7 @@ Change Log
 
 - Fixed regex bug in scraper.py sanity check
 - Added email notification to admin in case of scraper failure
-- Renamed some .txt files to .mk files
+- Renamed some .txt files to .md files
 
 
 0.1.1 (2012-12-01)
