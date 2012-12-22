@@ -8,11 +8,12 @@ The D*C Notifications application module
 # pylint: disable=F0401
 
 
-import logging
+from logging import ERROR
 from logging.handlers import SMTPHandler
 from uuid import uuid4
 from os import path, remove
 from datetime import datetime
+
 from flask import Flask, render_template, flash, abort, url_for
 from flask.ext.sqlalchemy import SQLAlchemy
 from pretty import date
@@ -27,7 +28,7 @@ from flask.ext.wtf.html5 import EmailField
 __author__ = "Sean Whalen"
 __copyright__ = "Copyright (C) 2012 %s" % __author__
 __license__ = "MIT"
-__version__ = "0.1.1"
+__version__ = "0.1.2"
 
 # Ignore flask case
 # pylint: disable=C0103
@@ -43,7 +44,7 @@ if not app.debug:
                                credentials=(app.config['MAIL_USERNAME'],
                                app.config['MAIL_PASSWORD']),
                                secure=())
-    mail_handler.setLevel(logging.ERROR)
+    mail_handler.setLevel(ERROR)
     app.logger.addHandler(mail_handler)
 
 db = SQLAlchemy(app)

@@ -67,5 +67,6 @@ nosetests.xml
 
 # Project files
 secrets.py
+updated.txt
 custom.txt
 notice.txt

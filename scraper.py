@@ -8,19 +8,36 @@ Provides information by screen-scraping the D*C website
 # Package namespace false-positive
 # pylint: disable=W0403
 
+
+from logging import ERROR
+from logging.handlers import SMTPHandler
 from re import match
 from robotparser import RobotFileParser
 
 from requests import get
 from bs4 import BeautifulSoup as bs
 
+from config import MAIL_SERVER, DEFAULT_MAIL_SENDER, ADMIN_MAIL, \
+MAIL_USERNAME, MAIL_PASSWORD
+
+
 __author__ = "Sean Whalen"
 __copyright__ = "Copyright (C) 2012 %s" % __author__
 __license__ = "MIT"
-__version__ = "1.1.1"
+__version__ = "1.1.2"
 
 BASE_URL = "http://dragoncon.org"
 
+if not app.debug:
+    mail_handler = SMTPHandler(MAIL_SERVER,
+                               DEFAULT_MAIL_SENDER,
+                               [ADMIN_MAIL],
+                               'D*C Notifications Failed',
+                               credentials=(MAIL_USERNAME,
+                               MAIL_PASSWORD),
+                               secure=())
+    mail_handler.setLevel(ERROR)
+    app.logger.addHandler(mail_handler)
 
 def _get_soup(path):
     """Gets soup from the given path, respecting robots.txt"""
@@ -66,7 +83,7 @@ def get_guests():
 
     confirmed_selector = "div p.MainBody a"
     confirmed_text = soup.select(confirmed_selector)[0].get_text()
-    confirmed_count = int(match("\d", confirmed_text).group(0))
+    confirmed_count = int(match("\d*", confirmed_text).group(0))
 
     if len(guests) != confirmed_count:
         raise ValueError("The guest count does not match the confirmed count")
