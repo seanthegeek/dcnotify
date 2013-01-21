@@ -43,7 +43,7 @@ if not app.debug:
     mail_handler = SMTPHandler(app.config['MAIL_SERVER'],
                                app.config['DEFAULT_MAIL_SENDER'],
                                [app.config['ADMIN_MAIL']],
-                               'D*C Notifications Failed',
+                               'D*C Notifications Command Failed',
                                credentials=(app.config['MAIL_USERNAME'],
                                app.config['MAIL_PASSWORD']),
                                secure=())
@@ -79,11 +79,12 @@ def _update_guests():
         record = Guest.query.filter_by(id=guest['id']).first()
         if record is None:
             new_guests.append(guest)
-            guest = Guest(guest['id'], guest['name'], guest['description'])
+            guest = Guest(guest['id'], guest['url'], guest['name'], guest['description'])
             db.session.add(guest)
         else:
             existing_count += 1
             record.name = guest['name']
+            record.url = guest['url']
             record.description = guest['description']
 
         db.session.commit()

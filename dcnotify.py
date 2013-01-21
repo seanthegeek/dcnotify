@@ -28,7 +28,7 @@ from flask.ext.wtf.html5 import EmailField
 __author__ = "Sean Whalen"
 __copyright__ = "Copyright (C) 2012 %s" % __author__
 __license__ = "MIT"
-__version__ = "0.1.3"
+__version__ = "0.2.0"
 
 # Ignore flask case
 # pylint: disable=C0103
@@ -63,10 +63,10 @@ class Guest(db.Model):
     name = db.Column(db.String(120))
     description = db.Column(db.String(512))
 
-    def __init__(self, id_, name, description):
+    def __init__(self, id_, url, name, description):
         self.id = id_
+        self.url = url
         self.name = name
-        self.url = "http://dragoncon.org/dc_guest_detail.php?id=%d" % id_
         self.description = description
 
     def __repr__(self):
@@ -329,6 +329,12 @@ def unsubscribe(email, uuid):
             abort(404)
     else:
         abort(404)
+
+
+@app.route('/error/')
+def error():
+    """Exception test"""
+    raise ValueError("Test")
 
 if __name__ == "__main__":
     app.run()

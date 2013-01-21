@@ -9,36 +9,20 @@ Provides information by screen-scraping the D*C website
 # pylint: disable=W0403
 
 
-from logging import ERROR,getLogger
-from logging.handlers import SMTPHandler
 from re import match
 from robotparser import RobotFileParser
 
 from requests import get
 from bs4 import BeautifulSoup as bs
 
-from config import MAIL_SERVER, DEFAULT_MAIL_SENDER, ADMIN_MAIL, \
-MAIL_USERNAME, MAIL_PASSWORD, DEBUG
-
 
 __author__ = "Sean Whalen"
 __copyright__ = "Copyright (C) 2012 %s" % __author__
 __license__ = "MIT"
-__version__ = "1.1.3"
+__version__ = "1.2.0"
 
 BASE_URL = "http://dragoncon.org"
 
-if not DEBUG:
-    mail_handler = SMTPHandler(MAIL_SERVER,
-                               DEFAULT_MAIL_SENDER,
-                               [ADMIN_MAIL],
-                               'D*C Notifications Failed',
-                               credentials=(MAIL_USERNAME,
-                               MAIL_PASSWORD),
-                               secure=())
-    mail_handler.setLevel(ERROR)
-    logger = getLogger()
-    logger.addHandler(mail_handler)
 
 def _get_soup(path):
     """Gets soup from the given path, respecting robots.txt"""
@@ -64,29 +48,26 @@ def get_guests():
     # regex false-positive
     # pylint: disable=W1401
 
-    guest_path = "/dc_guests_list.php"
-    guest_selector = "li p.MainBody"
+    guest_path = "/?q=guests"
+    guest_selector = "div.member-prof-pros p"
 
     soup = _get_soup(guest_path)
+
+    for elem in soup.findAll(['script', 'style']):
+        elem.extract()
+
     raw_guests = soup.select(guest_selector)
 
     guests = []
 
     for guest in raw_guests:
-        name = guest.a.get_text()
+        name = unicode(guest.a.get_text())
         url = "%s/%s" % (BASE_URL, guest.a['href'])
-        id_ = int(match(".*id=(\d*)", url).group(1))
+        id_ = int(match(".*/(\d*)", url).group(1))
         guest.a.extract()
-        description = guest.get_text().strip().replace(u'\xa0', u'')
+        description = unicode(guest.get_text().strip().replace(u'\xa0', u''))
         new_guest = dict(id=id_, name=name, url=url, description=description)
 
         guests.append(new_guest)
-
-    confirmed_selector = "div p.MainBody a"
-    confirmed_text = soup.select(confirmed_selector)[0].get_text()
-    confirmed_count = int(match("\d*", confirmed_text).group(0))
-
-    if len(guests) != confirmed_count:
-        raise ValueError("The guest count does not match the confirmed count")
 
     return guests

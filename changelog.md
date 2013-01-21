@@ -1,6 +1,11 @@
 Change Log
 ==========
 
+0.2.0 (2013-01-20)
+------------------
+
+- Updated scraper to work with D*C website redesign
+
 
 0.1.3 (2012-12-22)
 ------------------
