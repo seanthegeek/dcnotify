@@ -88,7 +88,7 @@ Not affiliated with or endorsed by Dragon*Con or DCI, Inc."""
 @app.route("/about/")
 def about():
     """About view"""
-    return render_template("about.html", status=get_status())
+    return render_template("about.html")
 
 
 @app.route("/contact/", methods=("GET", "POST"))
