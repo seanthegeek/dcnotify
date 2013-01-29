@@ -1,10 +1,24 @@
 Change Log
 ==========
 
+0.3.0 (2013-01-29)
+------------------
+
+- Cleaned up code to match standard mod_wsgi deployments after move from PythonAnywhere to Web Faction
+- Modulerize code
+- Improve PEP8 compliance
+- Abstract subscriber and guest functions
+- Remove new guest symbol (>>) from guest descriptions
+- Upgrade to HTML5 boilerplate 4.1.0
+- Use secure (HTTPS) app URLs
+- Add sample http.cpnf and index.py
+
+
 0.2.0 (2013-01-20)
 ------------------
 
 - Updated scraper to work with D*C website redesign
+- Removed guest count sanity check
 
 
 0.1.3 (2012-12-22)

@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /activate/
+Disallow: /unsubscribe/
+Disallow: /manage/
+Disallow: /admin/

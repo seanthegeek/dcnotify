@@ -65,7 +65,7 @@ def get_guests():
         url = "%s/%s" % (BASE_URL, guest.a['href'])
         id_ = int(match(".*/(\d*)", url).group(1))
         guest.a.extract()
-        description = unicode(guest.get_text().strip().replace(u'\xa0', u''))
+        description = guest.get_text().strip().lstrip(u"\xbb ")
         new_guest = dict(id=id_, name=name, url=url, description=description)
 
         guests.append(new_guest)
