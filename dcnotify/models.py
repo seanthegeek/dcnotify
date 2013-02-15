@@ -31,7 +31,7 @@ class Guest(db.Model):
     @staticmethod
     def count():
         """Returns the guest count"""
-        return Subscriber.query.count()
+        return Guest.query.count()
     
     @staticmethod
     def get(id_):

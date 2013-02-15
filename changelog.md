@@ -5,6 +5,7 @@ Change Log
 ------------------
 
 - Fixed typo in contact view that caused it to fail.
+- Fixed bug that caused guest vount to be the subscriber count
 
 
 0.3.0 (2013-01-29)
