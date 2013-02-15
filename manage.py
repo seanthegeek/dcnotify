@@ -51,8 +51,15 @@ def update():
 
 
 @manager.command
-def notice(message=None):
+def notice(message=None, email=False, tweet=False):
     """Sets or remove a site-wide notice."""
+    if email:
+        print("Sending mail...")
+        email_subscribers("Status update", message)
+
+    if tweet:
+        post_tweet(message)
+
     set_notice(message)
 
 

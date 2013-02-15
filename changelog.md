@@ -1,7 +1,7 @@
 Change Log
 ==========
 
-0.3.1 (2013-02-15)
+0.3.4 (2013-02-15)
 ------------------
 
 - Fixed typo in contact view that caused it to fail.
