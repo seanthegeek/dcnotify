@@ -101,7 +101,7 @@ def contact():
         message = form.message.data
         body = render_template('emails/contact.html', sender=sender,
                                message=message)
-        controller.email_admin(subject, body)
+        controllers.email_admin(subject, body)
         flash("Your message has been sent.", "success")
     else:
         flash_errors(form)
