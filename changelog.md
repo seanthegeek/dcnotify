@@ -4,7 +4,8 @@ Change Log
 0.4.0 (2013-05-24)
 -----------------
 
-- Fixed incomplete refactoring that caused notifications to fail.
+- Fixed incomplete refactoring that caused notifications to fail
+- Fixed subscription activation
 - Templates now pass HTML validation
 - Added more code comments
 
