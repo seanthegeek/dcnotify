@@ -17,7 +17,7 @@ from flask_mail import Mail
 __author__ = "Sean Whalen"
 __copyright__ = "Copyright (C) 2012 %s" % __author__
 __license__ = "MIT"
-__version__ = "0.3.4"
+__version__ = "0.4.0"
 
 # Ignore flask case
 # pylint: disable=C0103

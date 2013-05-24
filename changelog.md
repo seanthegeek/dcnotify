@@ -1,6 +1,13 @@
 Change Log
 ==========
 
+0.4.0 (2013-05-24)
+-----------------
+
+- Fixed incomplete refactoring that caused notifications to fail.
+- Templates now pass HTML validation
+- Added more code comments
+
 0.3.4 (2013-02-15)
 ------------------
 

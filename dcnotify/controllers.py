@@ -3,6 +3,7 @@
 from os import path, remove
 from time import time
 from datetime import datetime, timedelta
+from json import loads
 
 from pretty import date
 from twitter import Twitter, OAuth
@@ -156,7 +157,7 @@ def _update_guests():
             message = "%s is a guest at #DragonCon %s! %s" % (guest['name'],
                                                               year,
                                                                guest['url'])
-            tweet(message, silent=True)
+            post_tweet(message, silent=True)
 
         print("Building email message...")
         message = render_template('emails/guest.html', guests=new_guests)
