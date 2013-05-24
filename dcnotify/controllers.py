@@ -157,7 +157,7 @@ def _update_guests():
             message = "%s is a guest at #DragonCon %s! %s" % (guest['name'],
                                                               year,
                                                                guest['url'])
-            post_tweet(message, silent=True)
+            post_tweet(message)
 
         print("Building email message...")
         message = render_template('emails/guest.html', guests=new_guests)
