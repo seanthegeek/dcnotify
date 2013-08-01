@@ -1,8 +1,10 @@
 #-*- coding: utf-8 -*-
 
 from os import path, remove
+from urllib import quote_plus
 from time import time
 from datetime import datetime, timedelta
+from json import loads
 
 from pretty import date
 from twitter import Twitter, OAuth
@@ -40,8 +42,11 @@ def email_subscribers(subject, body):
     subscribers = models.Subscriber.get_all()
     messages = []
     for subscriber in subscribers:
-        unsub_url = url = url_for('unsubscribe', email=subscriber.email,
-                          uuid=subscriber.uuid, _external=True)
+        unsub_url = "https://%s/unsubscribe/%s/%s" % (
+	app.config['SERVER_NAME'], 
+	quote_plus(subscriber.email), 
+	quote_plus(subscriber.uuid)
+	)
         html = render_template('emails/mailer.html',
                                 subscriber=subscriber,
                                 message=body,
@@ -156,7 +161,7 @@ def _update_guests():
             message = "%s is a guest at #DragonCon %s! %s" % (guest['name'],
                                                               year,
                                                                guest['url'])
-            tweet(message, silent=True)
+            post_tweet(message)
 
         print("Building email message...")
         message = render_template('emails/guest.html', guests=new_guests)
@@ -171,7 +176,6 @@ def _update_guests():
 
         full_path_to_file = path.join(module_directory, "custom.txt")
         if path.exists(full_path_to_file):
-            updated_file = open(full_path_to_file, "r")
             print("Checking custom checks...")
             custom_file = open(full_path_to_file, "r")
             checks = loads(custom_file.read())

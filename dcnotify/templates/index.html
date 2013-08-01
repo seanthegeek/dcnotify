@@ -6,8 +6,8 @@
 	        <h1>Recieve notifications when new <a href="http://dragoncon.org/?q=guests" target="blank_">Dragon*Con guests</a> are listed:</h1>
 	         <form class="form-subscribe" method="post" action=".">
                 {{ form.hidden_tag() }}
-                {{ form.email.label }} {{ form.email(class="input-block-level", required="true", autofocus="true", placeholder=form.email.label.text) }}
-	        	<input class="btn btn-success" type="submit" value="Subscribe">
+                {{ form.email.label }} {{ form.email(class="input-block-level", required="required", autofocus="autofocus", placeholder=form.email.label.text) }}
+	        	<input class="btn btn-success btn-large" type="submit" value="Subscribe">
 	        </form>
 	      </div>
 {% endblock %}

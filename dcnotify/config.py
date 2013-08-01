@@ -15,6 +15,9 @@ DC_YEAR = 2013
 BABEL_DEFAULT_LOCALE = 'en_US'
 BABEL_DEFAULT_TIMEZONE = 'UTC'
 
+if DEBUG is False:
+    SERVER_NAME = "dcnotify.net"
+
 SQLALCHEMY_DATABASE_URI = "sqlite:///dcnotify.db"
 DEFAULT_MAIL_SENDER = "noreply@dcnotify.net"
 MAIL_PREFIX = "[D*C Notifications]"

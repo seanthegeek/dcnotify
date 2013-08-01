@@ -1,11 +1,24 @@
 Change Log
 ==========
 
+0.4.1 (2013-05-29)
+-----------------
+
+- Fixed generated unsubscribe link
+
+0.4.0 (2013-05-24)
+-----------------
+
+- Fixed incomplete refactoring that caused notifications to fail
+- Fixed subscription activation
+- Templates now pass HTML validation
+- Added more code comments
+
 0.3.4 (2013-02-15)
 ------------------
 
 - Fixed typo in contact view that caused it to fail.
-- Fixed bug that caused guest vount to be the subscriber count
+- Fixed bug that caused guest count to be the subscriber count
 
 
 0.3.0 (2013-01-29)

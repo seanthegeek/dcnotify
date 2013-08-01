@@ -11,6 +11,9 @@ View functions
 
 from flask import render_template, url_for, flash, abort
 from flask_mail import Message
+from markdown import markdown
+from bleach import clean, ALLOWED_TAGS
+
 
 from dcnotify import app, db
 import dcnotify.models as models
@@ -95,10 +98,11 @@ def about():
 def contact():
     """Contact view"""
     form = forms.ContactForm()
+    tags = ALLOWED_TAGS + ['h1', 'h2', 'h3', 'hr']
     if form.validate_on_submit():
-        sender = (form.name.data, form.email.data)
+        sender = (clean(form.name.data), clean(form.email.data, tags=tags))
         subject = "Message from %s" % form.name.data
-        message = form.message.data
+        message = clean(markdown(form.message.data))
         body = render_template('emails/contact.html', sender=sender,
                                message=message)
         controllers.email_admin(subject, body)

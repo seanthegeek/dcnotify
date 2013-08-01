@@ -89,4 +89,4 @@ class Subscriber(db.Model):
     def activate(self):
        """Activates the subscriber"""
        self.active = True
-       db.commit()
+       db.session.commit()
