@@ -70,7 +70,6 @@ def get_guests():
 
     # Parse the guest listings
     for guest in raw_guests:
-<<<<<<< HEAD
         if len(guest.text) > 0:
     	    name = unicode(guest.a.get_text())
             url = "%s/%s" % (BASE_URL, guest.a['href'])
@@ -78,15 +77,6 @@ def get_guests():
             guest.a.extract() # Remove the name, leaving only the description
             description = guest.get_text().strip().lstrip(u"\xbb ") # Remove extra chars
             new_guest = dict(id=id_, name=name, url=url, description=description)
-=======
-        name = unicode(guest.a.get_text())
-        url = "%s/%s" % (BASE_URL, guest.a['href'])
-        id_ = int(match(".*/(\d*)", url).group(1)) # Use existing PK
-        guest.a.extract() # Remove the name, leaving only the description
-        description = guest.get_text().strip().lstrip(u"\xbb ") # Remove extra chars
-        new_guest = dict(id=id_, name=name, url=url, description=description)
->>>>>>> b3ee216a1c27b18c1790a2fd07fa77107d5c6fa7
-
-        guests.append(new_guest)
+            guests.append(new_guest)
 
     return guests
