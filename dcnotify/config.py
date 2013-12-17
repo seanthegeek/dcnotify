@@ -10,7 +10,7 @@ from dcnotify.secrets import *
 
 DEBUG = False
 
-DC_YEAR = 2013
+DC_YEAR = 2014
 
 BABEL_DEFAULT_LOCALE = 'en_US'
 BABEL_DEFAULT_TIMEZONE = 'UTC'
